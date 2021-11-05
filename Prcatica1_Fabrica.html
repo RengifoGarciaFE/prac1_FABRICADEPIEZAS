@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+    <title> Práctica 1 - Fundamentos de tecnología de videojugeos</title>
+    <head> 
+        <h1> LA FÁBRICA DE PIEZAS </h1>
+    </head>
+    <body>
+        <script>
+            
+            class piezaGen{
+                //constructor
+                constructor(subtipo, codPieza, fechaFab){
+                    this.subtipo = subtipo;
+                    this.codPieza = codPieza;
+                    this.fechaFab = fechaFab;
+                }
+
+                //Getters y setters 
+                get subtipo(){
+                    return this.subtipo;
+                }
+                get codPieza(){
+                    return this.codPieza;
+                }
+                get fechaFab(){
+                    return this.fechaFab;
+                }
+                set subtipo(x){
+                    this.subtipo = x;
+                }
+                set codPieza(x){
+                    this.codPieza = x;
+                }
+                set fechaFab(x){
+                    this.fechaFab = x;
+                }
+            }
+
+            class piezaElec extends piezaGen{
+                //constructor
+                constructor(subtipo, codPieza, fechaFab, potencia, voltaje){
+                    super (subtipo, codPieza, fechaFab);
+                    this.potencia = potencia;  // 1, 5, 10 o 20 watios
+                    this.voltaje = voltaje;  // 3.3, 5, 12 o 240 voltios
+                }
+
+                //Getters y setters
+                get potencia(){
+                    return this.potencia;
+                }
+                get voltaje(){
+                    return this.voltaje;
+                }
+                set potencia(x){
+                    this.potencia = x;
+                }
+                set voltaje(x){
+                    this.voltaje = x;
+                }
+            }
+            
+            class piezaMec extends piezaGen {
+                //constructor 
+                constructor(subtipo, codPieza, fechaFab, material){
+                    super (subtipo, codPieza, fechaFab);
+                    this.material = material // Acero, titanio o carbono
+                }                
+                //Getters y setters
+                get material(){
+                    return this.material;
+                }
+                set material(x){
+                    this.material = x;
+                }
+            }
+
+            class Factoria{
+                constructor(){
+                    var numElec=0;
+                    var numMec=0;
+                }
+
+                generarPieza(numPiezas){
+                    numElec = 0.3*numPiezas;
+                    numMec = 0.7*numPiezas;
+                    for(var i=numElec; i>0, i++)
+                }
+
+                generarPiezaElec(){
+
+                }
+            }
+
+            class Fabrica{     
+                fabricar(numPiezas){
+                    if (numPiezas=100){
+
+                    }else if (numPiezas = 1000){
+                        
+                    }
+                }
+            }
+
+            class estacionProces{
+                procesarPieza(){
+                    
+                }
+            }
+
+            
+            
+        </script>
+    </body>
+
+
+</html>
