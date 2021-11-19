@@ -177,27 +177,29 @@ class Factory{
 		
 		const pieces = [];
 		pieces.push = Piece;
+        const code=[];
 	
 		var y= true;
 		
 		
 		var num = generateNum(1000000000,9999999999);
-		
 		if(x>1){
 			var auxNum = num;
 			
 			do{
 				for(int i = 0; i<x; i++){
-					if (auxNum==pieces[i].piece_cod){
+					if (auxNum==pieces[i].piece_cod[0]){
 						y=false;
 					}
 					auxNum=generateNum(1000000000,9999999999);
 				}
 			}while(y==false);
 			
-			pieces[x].piece_cod(auxNum);
+            
+            code[0] = auxNum;
 		}
-		pieces[x].piece_cod(num);
+        code[0] = num;
+		pieces[x].piece_cod(code);
 		
 		
 		
@@ -217,9 +219,64 @@ class Factory{
 		pieces[x].fab_date(date);
 	}
 
+
+    addID(x, Piece){
+        const code = [];
+        code = Piece.piece_cod;
+        if(x==true){
+            code[1]="E";
+        }else if(x==false){
+            code[1]="M";
+        }
+        Piece.piece_cod=code;
+        
+    }
+
 	
 
 	
+}
+
+class TreatmentStation{
+
+    constructor(){
+        var normalVarnished = 0;
+        var specialVarnished = 0;
+        var galvanized = 0; 
+        var polished = 0;
+        var painted = 0;
+    }
+
+
+    get normalVarnished(){
+        return this.normalVarnished;
+    }
+
+    get specialVarnished(){
+        return this.specialVarnished;
+    }
+
+    get galvanized(){
+        return this.galvanized;
+    }
+
+    get polished(){
+        return this.polished;
+    }
+
+    get painted(){
+        return this.painted;
+    }
+
+    treatment(Piece, x){
+        if(x==true){
+            if(Piece.potency==1 ||Piece.potency==5){
+                
+            }
+        }else if(x==false){
+
+        }
+    }
 }
 
 			
