@@ -9,10 +9,11 @@
         <script>
             class Piece{
     //constructor
-    constructor(name, piece_cod, fab_date){
+    constructor(name, piece_cod, fab_date,treatment){
         this.name = name;
         this.piece_cod = piece_cod;
         this.fab_date = fab_date;
+        this.treatment = treatment;
     }
 
     //Getters y setters 
@@ -39,7 +40,7 @@
 class ElectricPiece extends Piece{
     //constructor
     constructor(name, piece_cod, fab_date, potency, voltage){
-        super (name, piece_cod, fab_date);
+        super (name, piece_cod, fab_date, treatment);
         this.potency = potency;  // 1, 5, 10 o 20 watios
         this.voltage = voltage;  // 3.3, 5, 12 o 240 voltios
     }
@@ -62,7 +63,7 @@ class ElectricPiece extends Piece{
 class MechPiece extends Piece {
     //constructor 
     constructor(name, piece_cod, fab_date, material){
-        super (name, piece_cod, fab_date);
+        super (name, piece_cod, fab_date, treatment);
         this.material = material // Acero, titanio o carbono
     }                
     //Getters y setters
@@ -82,10 +83,31 @@ class Factory{
         var mechPieces = 0;
 		var totalPieces = elecPieces + mechPieces;
     }
-	
+
+	get elecPieces(){
+        return this.elecPieces;
+    }
+
+    get mechPieces(){
+        return this.mechPieces;
+    }
+
 	get totalPieces(){
 		return this.totalPieces;
 	}
+
+    set elecPieces(x){
+        this.elecPieces=x;
+    }
+
+    set mechPieces(x){
+        this.mechPieces=x;
+    }
+
+    set totalPieces(x){
+        this.totalPieces=x;
+    }
+
 
     generatePiece(){
         var prob = generateNum(1,10);
@@ -268,15 +290,64 @@ class TreatmentStation{
         return this.painted;
     }
 
+    set normalVarnished(x){
+        this.normalVarnished=x;
+    }
+
+    set specialVarnished(x){
+        this.specialVarnished=x;
+    }
+
+    set galvanized(x){
+        this.galvanized=x;
+    }
+
+    set polished(x){
+        this.polished=x;
+    }
+
+    set painted(x){
+        this.painted=x;
+    }
+
+
     treatment(Piece, x){
         if(x==true){
             if(Piece.potency==1 ||Piece.potency==5){
-                
+                Piece.treatment="Barnizada normal";
+                normalVarnished++;
+            } else if(Piece.potency==10 || Piece.potency==20){
+                Piece.treatment="Barnizada especial";
+                specialVarnished++;
             }
         }else if(x==false){
-
+                if(Piece.material=="Acero"){
+                    Piece.treatment="Galvanizada";
+                    galvanized++;
+                }else if(Piece.material=="Titanio"){
+                    Piece.treatment="Pulida";
+                    polished++;
+                }else if(Piece.material=="Carbono"){
+                    Piece.treatment="Pintada";
+                    painted++;
+                }
         }
     }
+}
+
+
+class Plant{
+    constructor(){
+        Factory factory = new Factory();
+        TreatmentStation station = new treatment();
+    }
+
+    manufacture(num){
+
+    }
+
+
+
 }
 
 			
@@ -285,6 +356,9 @@ class TreatmentStation{
 function generateNum(min, max) {
   return Math.random() * (max - min) + min;
 }
+
+
+
 
         </script>
     </body>
