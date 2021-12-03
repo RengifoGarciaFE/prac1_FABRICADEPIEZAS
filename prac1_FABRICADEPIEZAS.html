@@ -5,226 +5,335 @@
     <head> 
         <h1> LA FÁBRICA DE PIEZAS </h1>
     </head>
+
     <body>
+
+        <p>Pulse "Fabricar 100" para simular la fabricación de 100 piezas </p>
+        <p>Pulse "Fabricar 1000" para simular la fabricación de 100 piezas</p> 
+        <p>Resultado de la simulación</p>   
+
+        <button onclick="buttonInit(100)">Fabricar 100</button>
+        <button onclick="buttonInit(1000)">Fabricar 1000</button>
+
+        <h2>El resultado es:</h2>
+        <p id = "sol1"></p>
+        <p id = "sol2"></p>
+        <p id = "sol3"></p>
+
         <script>
             class Piece{
     //constructor
     constructor(name, piece_cod, fab_date,treatment){
-        this.name = name;
-        this.piece_cod = piece_cod;
-        this.fab_date = fab_date;
-        this.treatment = treatment;
+        this._name = name;
+        this._piece_cod = piece_cod;
+        this._fab_date = fab_date;
+        this._treatment = treatment;
+        //electrica = true, mecanica = false
+        this._bolType = true;
     }
+
 
     //Getters y setters 
     get name(){
-        return this.name;
+        return this._name;
     }
     get piece_cod(){
-        return this.piece_cod;
+        return this._piece_cod;
     }
     get fab_date(){
-        return this.fab_date;
+        return this._fab_date;
+    }
+    get treatment(){
+        return this._treatment;
+    }
+    get bolType(){
+        return this._bolType;
     }
     set name(x){
-        this.name = x;
+        this._name = x;
     }
     set piece_cod(x){
-        this.piece_cod = x;
+        this._piece_cod = x;
     }
     set fab_date(x){
-        this.fab_date = x;
+        this._fab_date = x;
+    }
+    set treatment(x){
+        this._treatment = x; 
+    }
+    set bolType(x){
+        this._bolType = x;
     }
 }
 
 class ElectricPiece extends Piece{
     //constructor
-    constructor(name, piece_cod, fab_date, potency, voltage){
+    constructor(name, piece_cod, fab_date, treatment , potency, voltage){
         super (name, piece_cod, fab_date, treatment);
-        this.potency = potency;  // 1, 5, 10 o 20 watios
-        this.voltage = voltage;  // 3.3, 5, 12 o 240 voltios
+        this._potency = potency;  // 1, 5, 10 o 20 watios
+        this._voltage = voltage;  // 3.3, 5, 12 o 240 voltios
+        this._bolType = true;
+    }
+    //pieza estandar
+    get name(){
+        return this._name;
+    }
+    get piece_cod(){
+        return this._piece_cod;
+    }
+    get fab_date(){
+        return this._fab_date;
+    }
+    get treatment(){
+        return this._treatment;
+    }
+    get bolType(){
+        return this._bolType;
+    }
+    set name(x){
+        this._name = x;
+    }
+    set piece_cod(x){
+        this._piece_cod = x;
+    }
+    set fab_date(x){
+        this._fab_date = x;
+    }
+    set treatment(x){
+        this._treatment = x; 
+    }
+    set bolType(x){
+        this._bolType = x;
     }
 
     //Getters y setters
     get potency(){
-        return this.potency;
+        return this._potency;
     }
     get voltage(){
-        return this.voltage;
+        return this._voltage;
     }
     set potency(x){
-        this.potency = x;
+        this._potency = x;
     }
     set voltage(x){
-        this.voltage = x;
+        this._voltage = x;
     }
+
 }
 
 class MechPiece extends Piece {
     //constructor 
-    constructor(name, piece_cod, fab_date, material){
+    constructor(name, piece_cod, fab_date, treatment, material){
         super (name, piece_cod, fab_date, treatment);
-        this.material = material // Acero, titanio o carbono
-    }                
+        this._material = material // Acero, titanio o carbono
+        this._bolType = true;
+    }     
+
+    //dcacdsc
+    get name(){
+        return this._name;
+    }
+    get piece_cod(){
+        return this._piece_cod;
+    }
+    get fab_date(){
+        return this._fab_date;
+    }
+    get treatment(){
+        return this._treatment;
+    }
+    get bolType(){
+        return this._bolType;
+    }
+    set name(x){
+        this._name = x;
+    }
+    set piece_cod(x){
+        this._piece_cod = x;
+    }
+    set fab_date(x){
+        this._fab_date = x;
+    }
+    set treatment(x){
+        this._treatment = x; 
+    }
+    set bolType(x){
+        this._bolType = x;
+    }
+
+
     //Getters y setters
     get material(){
-        return this.material;
+        return this._material;
+    }
+    get bolType(){
+        return this._bolType;
     }
     set material(x){
-        this.material = x;
+        this._material = x;
     }
+    set bolType(x){
+        this._bolType = x;
+    }
+
 }
 
 		
 			
 class Factory{
     constructor(){
-        var elecPieces = 0;
-        var mechPieces = 0;
-		var totalPieces = elecPieces + mechPieces;
+        this._elecPieces = 0;
+        this._mechPieces = 0;
+		this._totalPieces = this._mechPieces + this._elecPieces;
     }
 
 	get elecPieces(){
-        return this.elecPieces;
+        return this._elecPieces;
     }
 
     get mechPieces(){
-        return this.mechPieces;
+        return this._mechPieces;
     }
 
 	get totalPieces(){
-		return this.totalPieces;
+		return this._totalPieces;
 	}
 
-    set elecPieces(x){
-        this.elecPieces=x;
+    get allCodes(){
+        return this._allCodes;
     }
 
-    set mechPieces(x){
-        this.mechPieces=x;
+    set elecPieces(newElec){
+        this._elecPieces = newElec;
     }
 
-    set totalPieces(x){
-        this.totalPieces=x;
+    set mechPieces(newMech){
+        this._mechPieces = newMech;
+    }
+
+    set totalPieces(newTotal){
+        this._totalPieces = newTotal;
+    }
+    set allCodes(newCodes){
+        this._allCodes = newCodes;
     }
 
 
     generatePiece(){
         var prob = generateNum(1,10);
+        var piece = new Piece("","","","");
         if(prob<=3){
-            elecPieces++;
-            return true;
+            this._elecPieces++;
         } else if(prob>3){
-            mechPieces++;
-            return false;
+            this._mechPieces++;
+            piece._bolType=false;
         }
+        return piece;
     }
 
 	
-    choseSybtype(x, Piece){
-        var prob = generateNum(1,100)
-        if(x==true){
+    choseSybtype(piece){
+        var prob = generateNum(1,100);
+        if(piece._bolType==true){
             if(prob <=20){
-                Piece.name("Placa ABS");
+                piece._name="Placa ABS";
             } else if(prob>20 && prob<=40){
-                Piece.name("Centralita encendido");
+                piece._name="Centralita encendido";
             } else if(prob>40 && prob<=60){
-                Piece.name("Bornes cableado");
+                piece._name="Bornes cableado";
             }else if(prob>60 && prob <=80){
-                Piece.name("Alternador");
+                piece._name="Alternador";
             } else if (prob>80){
-                Piece.name("Encendido");
+                piece._name="Encendido";
             }
-        } else if(x==false){
+        } else if(piece._bolType==false){
             if(prob <=20){
-                Piece.name("Larguero inferior");
+                piece._name="Larguero inferior";
             } else if(prob>20 && prob<=40){
-                Piece.name("Guardabarros");
+                piece._name="Guardabarros";
             } else if(prob>40 && prob<=60){
-                Piece.name("Larguero superior");
+               piece._name="Larguero superior";
             }else if(prob>60 && prob <=80){
-                Piece.name("Subchasis");
+               piece._name="Subchasis";
             } else if (prob>80){
-                Piece.name("Puerta");
+                piece._name="Puerta";
             }
         }
+        return piece;
 
     }
 
 	
-	choseAtribs(x, Piece){
+	choseAtribs(piece){
 		
-        if(x==true){
+        if(piece._bolType==true){
 			
+            var newPiece = new ElectricPiece(piece._name, " ", " ", " ", " ", " ");
+            newPiece._bolType= piece._bolType;
+
 			var prob = generateNum(1,4);
        
-            if(prob1 == 1){
-                Piece.potency(1);
+            if(prob == 1){
+                newPiece._potency=1;
             } else if(prob == 2){
-                Piece.potency(5);
+                newPiece._potency=5;
             } else if(prob == 3){
-                Piece.potency(10);
+                newPiece._potency=10;
             } else if(prob == 4){
-                Piece.potency(20);
+                newPiece._potency=20;
             }
             
-            prob1=generateNum(1,4);
+            prob = generateNum(1,4);
 
-            if(prob1 == 1){
-                Piece.voltage(3.3);
+            if(prob == 1){
+                newPiece._voltage=3.3;
             } else if(prob == 2){
-                Piece.voltage(5);
+                newPiece._voltage=5;
             } else if(prob == 3){
-                Piece.voltage(12);
+                newPiece._voltage=12;
             } else if(prob == 4){
-                Piece.voltage(240);
+                newPiece._voltage=240;
             }
 
-        }else if(x==false){
             
+        }else if(piece._bolType==true){
+            var newPiece = new MechPiece(piece._name, " ", " ", " ", " ");
+            newPiece._bolType= piece._bolType;
 			prob = generateNum(1,3);
 			
 			if(prob == 1){
-                Piece.material("Acero");
+                newPiece._material="Acero";
             } else if(prob == 2){
-                Piece.material("Titanio");
+                newPiece._material="Titanio";
             } else if(prob == 3){
-                Piece.material("Carbono");
+                newPiece._material="Carbono";
             }
         }
+        return newPiece;
     }
 	
-	
-	assignNum(x, Piece){
-		
-		const pieces = [];
-		pieces.push = Piece;
-        const code=[];
-	
-		var y= true;
-		
-		
-		var num = generateNum(1000000000,9999999999);
-		if(x>1){
-			var auxNum = num;
-			
-			do{
-				for(int i = 0; i<x; i++){
-					if (auxNum==pieces[i].piece_cod[0]){
-						y=false;
-					}
-					auxNum=generateNum(1000000000,9999999999);
-				}
-			}while(y==false);
-			
+	addID(x){
+        var letter;
+        if(x==true){
+            return letter="E";
+        }else if(x==false){
+            return letter="M";
             
-            code[0] = auxNum;
-		}
+        }
+    }
+
+
+	assignNum(piece){
+		var x = this._totalPieces;
+        var code=[];
+		var num = generateNum(1000000000,9999999999);
+        var z= piece._bolType;
+
         code[0] = num;
-		pieces[x].piece_cod(code);
-		
-		
-		
+        code[1] = this.addID(z);
+        piece.piece_cod=code;
+        
 		var day;
 		var month = generateNum(1,12);
 		if(month==2){
@@ -238,99 +347,89 @@ class Factory{
 		
 		var date = new Date(year, month, day);
 		
-		pieces[x].fab_date(date);
+		piece._fab_date = date;
+
+        return piece;
 	}
 
-
-    addID(x, Piece){
-        const code = [];
-        code = Piece.piece_cod;
-        if(x==true){
-            code[1]="E";
-        }else if(x==false){
-            code[1]="M";
-        }
-        Piece.piece_cod=code;
-        
-    }
-
-	
 
 	
 }
 
+
 class TreatmentStation{
 
     constructor(){
-        var normalVarnished = 0;
-        var specialVarnished = 0;
-        var galvanized = 0; 
-        var polished = 0;
-        var painted = 0;
+        this._normalVarnished = 0;
+        this._specialVarnished = 0;
+        this._galvanized = 0; 
+        this._polished = 0;
+        this._painted = 0;
     }
 
 
     get normalVarnished(){
-        return this.normalVarnished;
+        return this._normalVarnished;
     }
 
     get specialVarnished(){
-        return this.specialVarnished;
+        return this._specialVarnished;
     }
 
     get galvanized(){
-        return this.galvanized;
+        return this._galvanized;
     }
 
     get polished(){
-        return this.polished;
+        return this._polished;
     }
 
     get painted(){
-        return this.painted;
+        return this._painted;
     }
 
     set normalVarnished(x){
-        this.normalVarnished=x;
+        this._normalVarnished=x;
     }
 
     set specialVarnished(x){
-        this.specialVarnished=x;
+        this._specialVarnished=x;
     }
 
     set galvanized(x){
-        this.galvanized=x;
+        this._galvanized=x;
     }
 
     set polished(x){
-        this.polished=x;
+        this._polished=x;
     }
 
     set painted(x){
-        this.painted=x;
+        this._painted=x;
     }
 
 
-    treatment(Piece, x){
-        if(x==true){
-            if(Piece.potency==1 ||Piece.potency==5){
-                Piece.treatment="Barnizada normal";
-                normalVarnished++;
-            } else if(Piece.potency==10 || Piece.potency==20){
-                Piece.treatment="Barnizada especial";
-                specialVarnished++;
+    treatment(ppiece){
+
+        if(ppiece._bolType==true){
+            if(ppiece.potency==1 || ppiece._potency==5){
+                ppiece.treatment="Barnizada normal";
+                this._normalVarnished++;
+            } else if(ppiece.potency==10 || ppiece.potency==20){
+                ppiece.treatment="Barnizada especial";
+                this._specialVarnished++;
             }
-        }else if(x==false){
-                if(Piece.material=="Acero"){
-                    Piece.treatment="Galvanizada";
-                    galvanized++;
-                }else if(Piece.material=="Titanio"){
-                    Piece.treatment="Pulida";
-                    polished++;
-                }else if(Piece.material=="Carbono"){
-                    Piece.treatment="Pintada";
-                    painted++;
-                }
+        }else if(ppiece._bolType==false){
+            if(ppiece.material=="Acero"){
+                ppiece.treatment="Galvanizada";
+                this._galvanized++;
+            }else if(ppiece.material=="Titanio"){
+                ppiece.treatment="Pulida";
+                this._polished++;
+            }else if(ppiece.material=="Carbono"){
+                ppiece.treatment="Pintada";
+                this._painted++;
+            }
         }
     }
 }
@@ -338,12 +437,42 @@ class TreatmentStation{
 
 class Plant{
     constructor(){
-        Factory factory = new Factory();
-        TreatmentStation station = new treatment();
+        this._factory = new Factory();
+        this._treatmentStation = new TreatmentStation();
     }
 
-    manufacture(num){
+    fabricar(num){
+        var x = false;
+        if(num == 100 || num==1000){
+            x=true;
+        }
 
+        if (x=true) {
+            var piecesFab;
+            if(num == 100){
+                piecesFab = [100];
+            } else if (num == 1000){
+                piecesFab = [1000]
+            }
+            
+        for(var i=0; i<num; i++){
+
+            
+            this._treatmentStation.treatment(this._factory.choseAtribs(this._factory.assignNum(this._factory.choseSybtype(this._factory.generatePiece()))));
+        }
+
+        var sol1 = document.getElementById("sol1");
+        var sol2 = document.getElementById("sol2");
+        var sol3 = document.getElementById("sol3");
+        var sol4 = document.getElementById("sol4");
+
+        sol1.innerHTML = "La factoría ha fabricado " + this._factory.totalPieces + " de las cuales "+ this._factory.elecPieces + " son de tipo eléctrico y " + this._factory.mechPieces + " son de tipo mecánico.";
+
+        sol2.innerHTML = "De las eléctricas, la estación de tratamiento ha aplicado barniz normal a " + this._treatmentStation.normalVarnished + " y barniz especial a " + this._treatmentStation.specialVarnished;
+
+        sol3.innerHTML = "De las mecánicas ha galvanizado " + this._treatmentStation.galvanized + ", ha pintado " + this._treatmentStation.painted + " y ha pulido "+ this._treatmentStation.polished;
+
+        }
     }
 
 
@@ -355,6 +484,11 @@ class Plant{
 
 function generateNum(min, max) {
   return Math.random() * (max - min) + min;
+}
+
+function buttonInit(piecesNum){
+    var plant = new Plant();
+    plant.fabricar(piecesNum);
 }
 
 
